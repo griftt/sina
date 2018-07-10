@@ -15,9 +15,10 @@ public class BackGroundLoginAction {
 	public String  code(){
 		String code =CodeUtil.number();
 		BufferedImage image= CodeUtil.codeImg(code);
-		InputStream input=CodeUtil.handCode(image);
+		input=CodeUtil.handCode(image);
 		System.out.println(1);
 		System.out.println(code);
+		System.out.println(input);
 		return "success";
 	}
 

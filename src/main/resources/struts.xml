@@ -11,7 +11,13 @@
              <result name="success" type="json">
             	<param name="root">result</param>
             </result>
-            <result name="error">/fail.jsp</result>
+            <result name="error">/fail.jsp</result> 
+        </action>
+         <action name="searchUser" class="userAction" method="searchUser">
+           
+             <result name="success" type="json">
+            	<param name="root">result</param>
+            </result>
             
         </action>
         <!--  <action name="" class="userAction" method="msg">

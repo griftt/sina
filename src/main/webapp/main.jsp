@@ -13,6 +13,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<title></title>
 		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 		<script type="text/javascript" src="layui/layui.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
 		<link rel="stylesheet" href="layui/css/layui.css" />
 		<style>
 			
@@ -90,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- 内容主体区域 -->
     <div style="padding: 15px;" class="m">
     	<div class="search">
-    		<input type="text" name="title" required lay-verify="required" placeholder="请输入账号" autocomplete="off" class="layui-input">   	
+    		<input type="text" name="title" required lay-verify="required" id="sea" placeholder="请输入账号" value="" class="layui-input">   	
   			<!-- 搜索框 -->
   				<div>
 		  			<button class="layui-btn">
@@ -121,6 +122,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </body>
 <script>
 	
+
+//列表的重载
+
+
+	
+	
+	
 layui.use(['table','element'], function(){
   var table = layui.table,laypage=layui.laypage;
   
@@ -134,10 +142,10 @@ layui.use(['table','element'], function(){
 
 
   //第一个实例
-  table.render({
+ 	var tableins= table.render({
     elem: '#demo'
     ,height: 500
-    ,url: 'loadUser' //数据接口
+    ,url: 'user/loadUser' //数据接口
     ,page: true //开启分页
     ,cols: [[ //表头
       {checkbox: true, fixed: true,align:'center' ,width:40}
@@ -163,6 +171,57 @@ layui.use(['table','element'], function(){
   
   });
    
+  var $search_in=$("#sea");
+  $search_in.keyup(function(){
+  
+  	var account=$(this).val();
+  	/* $.ajax({
+  		url:'user/searchUser',
+  		type:"post",
+  		data:"account="+$(this).val(),
+  		dataType:"json",
+  		success:function(obj){
+  			
+  			
+  			
+  		}
+  		 		
+  	})*/
+  tableins.reload({
+  			elem: '#demo'
+  		    ,height: 500
+  		    ,where:{
+  		    	account:account
+  		    	
+  		    }
+  		    ,url: 'user/searchUser' //数据接口
+  		    ,page: true //开启分页
+  		    
+  		    ,cols: [[ //表头
+  		      {checkbox: true, fixed: true,align:'center' ,width:40}
+  		     , {field: 'id',type:'numbers' ,title: 'ID', width:80, sort: true,align:'center'}
+  		     ,{field: 'account', title: '账号', width: 200,align:'center'}
+  		      ,{field: 'pwd', title: '密码', width: 200,align:'center'}
+  		      ,{field: 'name', title: '用户名', width:220,align:'center'}
+  		      ,{field: 'gender', title: '性别', width:80,align:'center'}
+  		      ,{field: 'province', title: '省份', width:80,align:'center'} 
+  		      ,{field: 'city', title: '城市', width:80,align:'center'} 
+  		      ,{field: 'birthday', title: '生日', width:80,align:'center'} 
+  		      ,{field: 'pic', title: '头像', width: 100,align:'center'}
+  		      ,{field: 'statement', title: '签名', width: 200,align:'center'}
+  		      ,{field: 'dao', title: '操作', width: 260,toolbar:"#barDemo",align:'center'}
+  		      
+  		    ]]
+  			
+  			,page:{
+  				curr:1
+  			}
+  			
+  		
+  		
+  	})
+  })
+  
   
 
 

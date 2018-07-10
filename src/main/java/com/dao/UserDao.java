@@ -90,6 +90,26 @@ public class UserDao extends HibernateDaoSupport implements UserDaoInterface {
 		
 		
 	}
+	@SuppressWarnings({ "deprecation", "unchecked" })
+	public List<User> selectLike(final String account){
+		HibernateTemplate tem = super.getHibernateTemplate();
+		System.out.println(account);
+		return (List<User>) tem.executeFind(new HibernateCallback() {
+				
+			@Override
+			public Object doInHibernate(Session session) throws HibernateException, SQLException {
+				// TODO Auto-generated method stub
+				Query query=session.createQuery("from User u where u.account like :account");
+				query.setString("account", "%"+account+"%");
+						
+				
+				return query.list();
+			}
+			
+		
+		});
+		
+	}
 
 	
 	

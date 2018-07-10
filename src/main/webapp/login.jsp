@@ -93,7 +93,7 @@
 			}
 			
 			form .code img {
-				height: 29px;
+				height: 33px;
 				width: 100px;
 				vertical-align: middle;
 			}
@@ -130,7 +130,7 @@
 					<input type="password" name="pwd" placeholder="请输入密码" />
 				</div>
 				
-				<p class="code"><input type="text" placeholder="请输入验证码" /><img src="login/code"/></p>
+				<p class="code"><input type="text" placeholder="请输入验证码" /><img src="login/code" onclick="this.src='login/code?a='+Math.random()"/></p>
 				<p class="r" ><input type="checkbox" name="" id="rem" /><span>记住密码</span></p>
 					<p><input type="submit" value="登录" class="login" /></p>
 			</form>

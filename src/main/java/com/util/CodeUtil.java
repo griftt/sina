@@ -20,10 +20,10 @@ public class CodeUtil {
 		Graphics g=	image.getGraphics();
 		String str=code;
 		g.setColor(new Color((int )(Math.random()*255),(int )(Math.random()*255),(int )(Math.random()*255)));
-		g.fillRect(0, 0,100,30);
+		g.fillRect(0, 0,100,33);
 		g.setColor(new Color((int )(Math.random()*255),(int )(Math.random()*255),(int )(Math.random()*255)));
-		g.setFont(new Font("微软雅黑", Font.BOLD, 18));
-		g.drawString(str, 10, 20);
+		g.setFont(new Font("微软雅黑", Font.BOLD, 22));
+		g.drawString(str, 20, 20);
 		return image;
 	}
 	
@@ -62,7 +62,8 @@ public class CodeUtil {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println(" iamge error");
+			System.out.println(" image error");
+			
 		}
 		return input;
 		

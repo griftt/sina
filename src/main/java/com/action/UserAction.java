@@ -18,6 +18,8 @@ public class UserAction {
 	private int pagesize=3;
 	private List<User> users;
 	private int pages;
+	private String account;
+	
 	ResultMap result;
 	
 	
@@ -29,16 +31,31 @@ public class UserAction {
 		System.out.println(pages);
 		users=dao.userPage(page, pagesize);
 		for(User u:users){
-			
-		
-		System.out.println(u);
-		
+		System.out.println(u);		
 		}
 		result=new ResultMap(0,"",users,users.size());
 		return "success";
 		
 	}
+	public String searchUser(){
+		System.out.println(account);
+		
+		users=dao.selectLike(account);
+		System.out.println(users);
+		result=new ResultMap(0,"",users,users.size());
+		return "success";
+		
+		
+		
+	}
 	
+	
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
 	public List<User> getUsers() {
 		return users;
 	}
