@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+    <class name="com.entity.User" table="t_user">
+
+       <id name="id" type="integer" column="id">
+            <generator class="identity"/>
+       </id>
+       <property name="city" type="java.lang.String" column="city"/>
+       <property name="gender" type="string" column="gender"/>
+       <property name="mail" type="string" column="mail"/>
+       <property name="name" type="string" column="name"/>
+       <property name="account" type="string" column="account" />
+       <property name="pwd" type="string" column="pwd"/>
+       <property name="friendId" type="integer" column="friendId" />
+       <property name="pic" type="string" column="pic"/>
+       <property name="birthday" type="string" column="birthday"/>
+       <property name="province" type="string" column="province"/>
+       
+        
+    </class>
+
+</hibernate-mapping>
