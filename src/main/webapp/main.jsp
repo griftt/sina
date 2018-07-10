@@ -137,7 +137,7 @@ layui.use(['table','element'], function(){
   table.render({
     elem: '#demo'
     ,height: 500
-    ,url: 'msg' //数据接口
+    ,url: 'loadUser' //数据接口
     ,page: true //开启分页
     ,cols: [[ //表头
       {checkbox: true, fixed: true,align:'center' ,width:40}
@@ -150,7 +150,7 @@ layui.use(['table','element'], function(){
       ,{field: 'city', title: '城市', width:80,align:'center'} 
       ,{field: 'birthday', title: '生日', width:80,align:'center'} 
       ,{field: 'pic', title: '头像', width: 100,align:'center'}
-      ,{field: 'word', title: '签名', width: 200,align:'center'}
+      ,{field: 'statement', title: '签名', width: 200,align:'center'}
       ,{field: 'dao', title: '操作', width: 260,toolbar:"#barDemo",align:'center'}
       
     ]]

@@ -12,7 +12,14 @@ public class User {
 	private String mail;
 	private int friendId;
 	private String name;
+	private String statement;
 	
+	public String getStatement() {
+		return statement;
+	}
+	public void setStatement(String statement) {
+		this.statement = statement;
+	}
 	public String getName() {
 		return name;
 	}
@@ -79,13 +86,13 @@ public class User {
 	public void setFriendId(int friendId) {
 		this.friendId = friendId;
 	}
-	
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", account=" + account + ", pwd=" + pwd + ", pic=" + pic + ", birthday=" + birthday
 				+ ", province=" + province + ", city=" + city + ", gender=" + gender + ", mail=" + mail + ", friendId="
-				+ friendId + ", name=" + name + "]";
+				+ friendId + ", name=" + name + ", statement=" + statement + "]";
 	}
+	
 	
 	
 	

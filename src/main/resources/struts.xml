@@ -5,10 +5,12 @@
 
 <struts>
 
-   <package name="" namespace="/" extends="json-default">
-        <action name="hello" class="userAction" method="findPage">
+   <package name="user" namespace="/user" extends="json-default">
+        <action name="loadUser" class="userAction" method="findPage">
             <result name="input">/Register.jsp</result>
-            <result name="success">/main.jsp</result>
+             <result name="success" type="json">
+            	<param name="root">result</param>
+            </result>
             <result name="error">/fail.jsp</result>
             
         </action>
@@ -21,14 +23,24 @@
             
         </action> -->
         
-         <action name="msg" class="userAction" method="findPage">
-            <result name="input">/Register.jsp</result>
-            <result name="success" type="json">
-            	<param name="root">result</param>
-            </result>
+         <action name="loadin" class="userAction">
+            <result name="success">/main.jsp</result>
+            
             <result name="error">/fail.jsp</result>
             
         </action>
     </package>
+    <package name="login" namespace="/login" extends="json-default">
+    	 <action name="code" class="backGroundLoginAction" method="code">
+            <result name="success" type="stream">
+            	<param name="contentType">image/jpeg</param>   
+            	<param name="inputName">input</param>
+            </result>
+            <result name="error">/fail.jsp</result>
+            
+        </action>
+    
+    </package>
+    
 
 </struts>

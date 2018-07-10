@@ -22,6 +22,7 @@
        <property name="pic" type="string" column="pic"/>
        <property name="birthday" type="string" column="birthday"/>
        <property name="province" type="string" column="province"/>
+        <property name="statement" type="string" column="statement"/>
        
         
     </class>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import com.dao.UserDao;
@@ -11,6 +12,7 @@ import com.data.ResultMap;
 import com.entity.User;
 
 @Controller
+@Scope("prototype")
 public class UserAction {
 	private int page=1;
 	private int pagesize=3;
