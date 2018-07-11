@@ -15,60 +15,11 @@
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="layui/layui.js"></script>
 <script type="text/javascript" src="js/main.js"></script>
+<script type="text/javascript" src="js/turn.js"></script>
 <link rel="stylesheet" href="layui/css/layui.css" />
+<link rel="stylesheet" href="css/main.css" />
 <style>
-.search {
-	width: 400px;
-	position: relative;
-}
 
-.search input {
-	vertical-align: middle;
-}
-
-.search div {
-	vertical-align: middle;
-	position: absolute;
-	top: 0;
-	right: 0;
-}
-
-.layui-btn {
-	border-radius: none;
-}
-
-#other {
-	height: 500px;
-	width: 1000px;
-	z-index: 1000;
-}
-
-.show {
-	opacity: 1;
-}
-
-.hide {
-	opacity: 0;
-}
-
-.box {
-	position: relative;
-}
-
-.users{
-	background-color: red;
-	position: absolute;
-	left: 1px;
-	top: 1px;
-}
-
-.userdetail {
-	background-color: yellow;
-	position: absolute;
-	left: 1px;
-	top: 1px;
-	width: 100%;
-}
 </style>
 </head>
 <body class="layui-layout-body">
@@ -77,16 +28,16 @@
 			<div class="layui-logo">layui 后台布局</div>
 			<!-- 头部区域（可配合layui已有的水平导航） -->
 			<ul class="layui-nav layui-layout-left">
-				<li class="layui-nav-item"><a href="">控制台</a></li>
+				<li class="layui-nav-item" id="control"><a >控制台</a></li>
 				<li class="layui-nav-item" id="userAdmin"><a>用户管理</a></li>
-				<li class="layui-nav-item"><a href="">信息管理</a></li>
-				<li class="layui-nav-item"><a href="javascript:;">审核系统</a>
+				<li class="layui-nav-item" id="wei"><a>微博管理</a></li>
+				<li class="layui-nav-item" ><a href="javascript:;">审核系统</a>
 					<dl class="layui-nav-child">
 						<dd>
 							<a href="">邮件管理</a>
 						</dd>
 						<dd>
-							<a href="">消息管理</a>
+							<a  id="message">消息管理</a>
 						</dd>
 						<dd>
 							<a href="">授权管理</a>
@@ -150,7 +101,7 @@
 		<div class="layui-body">
 			<!-- 内容主体区域 -->
 			<div class="box">
-				<div style="padding: 15px;" class="users">
+				<div style="padding: 15px;" class="users page">
 					<div class="search">
 						<input type="text" name="title" required lay-verify="required"
 							id="sea" placeholder="请输入账号" value="" class="layui-input">
@@ -167,7 +118,7 @@
 
 
 				</div>
-				<div id="userpage" class="userdetail">
+				<div id="userpage" class="userdetail page">
 					<div class="user">
 						<form class="layui-form" action="">
 							<div class="layui-form-item layui-form-text">
@@ -223,73 +174,124 @@
 					</div>
 
 				</div>
-				<div class="adminpage">
+				<div class="adminpage page">
+					<form class="layui-form" action="">
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">账号</label>
+							<div class="layui-input-block">
+								<div class="size">
+									<input type="text" name="title" required lay-verify="required"
+										placeholder="请输入账号" autocomplete="off" class="layui-input">
+								</div>
+
+							</div>
+						</div>
+
+						<div class="layui-form-item">
+							<label class="layui-form-label">密碼</label>
+							<div class="layui-input-block">
+								<div class="size">
+									<input type="password" name="title" required
+										lay-verify="required" value="123456" lder="请输入密码"
+										autocomplete="off" class="layui-input">
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label class="layui-form-label">角色</label>
+							<div class="layui-input-block">
+								<div class="size">
+									<select name="city" lay-verify="required">
+										<option value=""></option>
+										<option value="0">北京</option>
+										<option value="1">上海</option>
+										<option value="2">广州</option>
+										<option value="3">深圳</option>
+										<option value="4">杭州</option>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<div class="layui-input-block">
+								<button class="layui-btn" lay-submit lay-filter="formDemo">确认添加</button>
+								<button type="reset" class="layui-btn layui-btn-primary">清空</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="weibo page">
 				<form class="layui-form" action="">
-
+					
 					<div class="layui-form-item">
-						<label class="layui-form-label">账号</label>
+						<label class="layui-form-label">开关</label>
 						<div class="layui-input-block">
-							<div class="size">
-								<input type="text" name="title" required lay-verify="required"
-									placeholder="请输入账号" autocomplete="off" class="layui-input">
-							</div>
-
+							<input type="checkbox" name="switch" lay-skin="switch">
 						</div>
 					</div>
-
 					<div class="layui-form-item">
-						<label class="layui-form-label">密碼</label>
+						<label class="layui-form-label">weibo ID</label>
 						<div class="layui-input-block">
 							<div class="size">
-								<input type="password" name="title" required
-									lay-verify="required" value="123456" lder="请输入密码"
-									autocomplete="off" class="layui-input">
+								<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
 							</div>
 						</div>
 					</div>
 					<div class="layui-form-item">
-						<label class="layui-form-label">角色</label>
+						<label class="layui-form-label">输入框</label>
 						<div class="layui-input-block">
 							<div class="size">
-								<select name="city" lay-verify="required">
-									<option value=""></option>
-									<option value="0">北京</option>
-									<option value="1">上海</option>
-									<option value="2">广州</option>
-									<option value="3">深圳</option>
-									<option value="4">杭州</option>
-								</select>
+								<input type="text" name="title" required lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div class="layui-form-item layui-form-text">
+						<label class="layui-form-label">文本域</label>
+						<div class="layui-input-block">
+							<div class="size2">
+								<textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
 							</div>
 						</div>
 					</div>
 					<div class="layui-form-item">
+						<label class="layui-form-label">图片</label>
 						<div class="layui-input-block">
-							<button class="layui-btn" lay-submit lay-filter="formDemo">确认添加</button>
-							<button type="reset" class="layui-btn layui-btn-primary">清空</button>
+							<div class="size2">
+								<textarea name="desc" placeholder="请输入内容" class="layui-textarea"></textarea>
+							</div>
+						</div>
+						
+					</div>
+					<div class="layui-form-item">
+						<div class="layui-input-block">
+							<button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+							<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 						</div>
 					</div>
+					
 				</form>
-			</div>	
 
+			</div>
 				<div class="layui-footer">
+					
 					<!-- 底部固定区域 -->
 					© layui.com - 底部固定区域
 				</div>
 			</div>
 		</div>
 
-		<script type="text/html" id="barDemo">
+<script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">查看</a>
     <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
 </script>
 </body>
 <script>
+	
+
 	//列表的重载
-	$("#userAdmin").click(function() {
-		
-		$(" .users ").css("opacity", 0);
-	})
+	
 
 	layui.use([ 'table', 'element' ], function() {
 		var table = layui.table, laypage = layui.laypage;
@@ -300,7 +302,7 @@
 		//,limit: 3 //注意：请务必确保 limit 参数（默认：10）是与你服务端限定的数据条数一致
 		////支持所有基础参数
 		//,page:'true'
-		//}); 
+		//}); turn.js
 
 		//第一个实例
 		var tableins = table.render({
