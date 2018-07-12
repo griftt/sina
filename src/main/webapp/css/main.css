@@ -1,0 +1,66 @@
+@CHARSET "UTF-8";
+.search {
+	width: 400px;
+	position: relative;
+}
+
+.search input {
+	vertical-align: middle;
+}
+
+.search div {
+	vertical-align: middle;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.layui-btn {
+	border-radius: none;
+}
+
+#other {
+	height: 500px;
+	width: 1000px;
+	z-index: 1000;
+}
+
+.show {
+	opacity: 1;
+}
+
+.hide {
+	opacity: 0;
+}
+
+.box {
+	position: relative;
+}
+
+.users {
+	background-color: red;
+	position: absolute;
+	left: 1px;
+	top: 1px;
+}
+.weibo{
+	background-color:blue;
+	position: absolute;
+	left: 1px;
+	top: 1px;
+}
+
+.userdetail {
+	background-color: yellow;
+	position: absolute;
+	left: 1px;
+	top: 1px;
+	width: 100%;
+}
+.size {
+	width: 400px;
+}
+
+.size2 {
+	width: 700px;
+}
