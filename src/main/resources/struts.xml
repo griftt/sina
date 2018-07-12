@@ -20,14 +20,7 @@
             </result>
             
         </action>
-        <!--  <action name="" class="userAction" method="msg">
-            <result name="input">/Register.jsp</result>
-            <result name="success" type="json">
-            	<param name="root">result</param>
-            </result>
-            <result name="error">/fail.jsp</result>
-            
-        </action> -->
+
         
          <action name="loadin" class="userAction">
             <result name="success">/main.jsp</result>
@@ -36,13 +29,28 @@
             
         </action>
     </package>
-    <package name="login" namespace="/login" extends="json-default">
+    <package name="adminlogin" namespace="/adminLogin" extends="json-default">
     	 <action name="code" class="backGroundLoginAction" method="code">
             <result name="success" type="stream">
             	<param name="contentType">image/jpeg</param>   
             	<param name="inputName">input</param>
             </result>
-            <result name="error">/fail.jsp</result>
+          
+            
+        </action>
+         <action name="checkCode" class="backGroundLoginAction" method="checkCode">
+            <result name="success" type="json">
+            	<param name="root">flag</param>
+            </result>
+            
+            
+        </action>
+        <action name="login" class="backGroundLoginAction" method="login">
+            <result name="success" >
+            	/main.jsp
+            </result>
+              <result name="error">/login.jsp</result>
+            
             
         </action>
     

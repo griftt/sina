@@ -1,6 +1,6 @@
 package com.entity;
 
-public class Account {
+public class Admin {
 	 	private int id ;
 	 	private String account;
 	 	private String pwd;
@@ -31,7 +31,7 @@ public class Account {
 		}
 		@Override
 		public String toString() {
-			return "Account [id=" + id + ", account=" + account + ", pwd=" + pwd + ", roleId=" + roleId + "]";
+			return "Admin [id=" + id + ", account=" + account + ", pwd=" + pwd + ", roleId=" + roleId + "]";
 		} 
 	 	
 	

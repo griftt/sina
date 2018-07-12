@@ -7,7 +7,7 @@
 
 <hibernate-mapping>
 
-    <class name="com.entity.Account" table="t_account">
+    <class name="com.entity.Admin" table="t_admin">
 
        <id name="id" type="integer" column="id">
             <generator class="identity"/>
