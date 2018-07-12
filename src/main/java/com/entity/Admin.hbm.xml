@@ -12,6 +12,7 @@
        <id name="id" type="integer" column="id">
             <generator class="identity"/>
        </id>
+          <property name="name" type="string" column="name"/>
        <property name="account" type="string" column="account" />
        <property name="pwd" type="string" column="pwd"/>
        <property name="roleId" type="integer" column="roleId"/>

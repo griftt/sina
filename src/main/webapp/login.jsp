@@ -125,7 +125,7 @@ form .login {
 <body>
 	<div class="box">
 
-		<form action="adminLogin/login" method="post">
+		<form action="/sina/adminLogin/login" method="post">
 
 			<p style="display: none;">
 				<img src="../resources/images/bg-sidebar.gif" />

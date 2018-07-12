@@ -26,7 +26,6 @@ public class UserAction {
 	@Resource
 	private UserDao dao;
 	public String findPage(){
-		
 		pages=dao.countAll(3);
 		System.out.println(pages);
 		users=dao.userPage(page, pagesize);
