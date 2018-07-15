@@ -15,7 +15,7 @@ import com.entity.User;
 @Scope("prototype")
 public class UserAction {
 	private int page=1;
-	private int pagesize=3;
+	private int limit;
 	private List<User> users;
 	private int pages;
 	private String account;
@@ -26,13 +26,15 @@ public class UserAction {
 	@Resource
 	private UserDao dao;
 	public String findPage(){
-		pages=dao.countAll(3);
+		System.out.println(page+"--"+limit);
+		pages=dao.countAll();
 		System.out.println(pages);
-		users=dao.userPage(page, pagesize);
+		users=dao.userPage(page,limit);
+		System.out.println("--------------------------------------------");
 		for(User u:users){
-		System.out.println(u);		
+			System.out.println(u);		
 		}
-		result=new ResultMap(0,"",users,users.size());
+		result=new ResultMap(0,"",users,pages);
 		return "success";
 		
 	}
@@ -85,11 +87,12 @@ public class UserAction {
 	public void setPage(int page) {
 		this.page = page;
 	}
-	public int getPagesize() {
-		return pagesize;
+	
+	public int getLimit() {
+		return limit;
 	}
-	public void setPagesize(int pagesize) {
-		this.pagesize = pagesize;
+	public void setLimit(int limit) {
+		this.limit = limit;
 	}
 	public UserDao getDao() {
 		return dao;

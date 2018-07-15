@@ -26,6 +26,8 @@ public class BackGroundLoginAction implements SessionAware {
 	private boolean flag=false;
 	private String account;
 	private String pwd;
+	private  int roleId;
+	private String adminName;
 	private Admin admin;
 	List<Admin> admins;
 	private int page;
@@ -47,7 +49,6 @@ public class BackGroundLoginAction implements SessionAware {
 	}
 
 	public String login() {
-		
 		code=(String) session.get("code");
 		System.out.println(inputCode +"and"+ code); 
 		if(code.toUpperCase().equals(inputCode.toUpperCase())){	
@@ -67,21 +68,21 @@ public class BackGroundLoginAction implements SessionAware {
 		return "success";
 		
 	}
-	public String checkCode() {
-		System.out.println(inputCode);
-		if(code.toUpperCase().equals(inputCode.toUpperCase())){
-			flag=true;
-		}
+
+	//创建管理员
+	public String addAdmin(){
 		
+		
+		System.out.println(account +"---"+pwd+"---"+roleId+"--"+adminName);
+		Admin admin=new Admin();
+		admin.setAccount(account);
+		admin.setPwd(pwd);
+		admin.setName(adminName);
+		admin.setRoleId(roleId);
+		//adminDao.createAdmin(admin);
+		System.out.println(admin.getId());
+		resultMap=new ResultMap(0,"",new Integer(1),1);
 		return "success";
-		
-	}
-	//创建普通管理员
-	public String createAdmin(){
-		
-		adminDao.createAdmin(admin);
-		
-		return "succcess";
 		
 	}
 	public String showAdmin(){
@@ -102,7 +103,7 @@ public class BackGroundLoginAction implements SessionAware {
 	public ResultMap getResultMap() {
 		return resultMap;
 	}
-
+	
 	public void setResultMap(ResultMap resultMap) {
 		this.resultMap = resultMap;
 	}
@@ -176,6 +177,14 @@ public class BackGroundLoginAction implements SessionAware {
 	public Admin getAdmin() {
 		return admin;
 	}
+	
+	public int getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
 
 	public void setAdmin(Admin admin) {
 		this.admin = admin;
@@ -207,6 +216,15 @@ public class BackGroundLoginAction implements SessionAware {
 
 	public int getPagesizes() {
 		return pagesizes;
+	}
+
+	
+	public String getAdminName() {
+		return adminName;
+	}
+
+	public void setAdminName(String adminName) {
+		this.adminName = adminName;
 	}
 
 	public void setPagesizes(int pagesizes) {

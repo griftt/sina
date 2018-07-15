@@ -29,7 +29,6 @@
     <package name="adminlogin" namespace="/adminLogin" extends="json-default">
     	 <action name="code" class="backGroundLoginAction" method="code">
             <result name="success" type="stream">
-            	<param name="contentType">image/jpeg</param>   
             	<param name="inputName">input</param>
             </result>
          </action>   
@@ -49,6 +48,12 @@
     			<param name="root">resultMap</param>
     		</result>
     	</action>
+    	<action name="addAdmin" class="backGroundLoginAction" method="addAdmin">
+    		<result name="success" type="json">
+    			<param name="root">resultMap</param>
+    		</result>
+    	</action>
+    	
     </package>
     
 

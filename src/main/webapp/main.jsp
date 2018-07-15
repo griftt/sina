@@ -27,7 +27,8 @@
 			<!-- 头部区域（可配合layui已有的水平导航） -->
 			<ul class="layui-nav layui-layout-left">
 				<li class="layui-nav-item" id="control"><a >控制台</a></li>
-				<li class="layui-nav-item" id="userAdmin"><a>用户管理</a></li>
+				<li class="layui-nav-item" id="userAdmin2"><a>用户管理</a></li>
+				<li class="layui-nav-item" id="userAdmin" ><a style="display:none;">用户管理</a></li>
 				<li class="layui-nav-item" id="wei"><a>微博管理</a></li>
 				<li class="layui-nav-item" ><a href="javascript:;">审核系统</a>
 					<dl class="layui-nav-child">
@@ -50,7 +51,7 @@
 							<a href="">基本资料</a>
 						</dd>
 						<dd>
-							<a href="">安全设置</a>
+							<a id="createAdmin">创建管理员</a>
 						</dd>
 					</dl></li>
 				<li class="layui-nav-item"><a href="unlogin">退出</a></li>
@@ -113,8 +114,6 @@
 					</div>
 					<table class="layui-table" lay-filter="test" id="demo">
 					</table>
-
-
 				</div>
 				<div id="userpage" class="userdetail page">
 					<div class="user">
@@ -173,51 +172,63 @@
 
 				</div>
 				<div class="adminpage page">
-					<form class="layui-form" action="">
-
+				   <div class="createAmdinForm">
+						<div class="layui-form-item ">
+							<label class="layui-form-label">名字</label>
+							<div class="layui-input-block">
+								<div class="size">
+									<input type="text" id="adminName" required lay-verify="required"
+										placeholder="请输入名字" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+						</div>
 						<div class="layui-form-item">
 							<label class="layui-form-label">账号</label>
 							<div class="layui-input-block">
 								<div class="size">
-									<input type="text" name="title" required lay-verify="required"
+									<input type="text" name="account" required lay-verify="required"
 										placeholder="请输入账号" autocomplete="off" class="layui-input">
 								</div>
-
 							</div>
 						</div>
-
 						<div class="layui-form-item">
 							<label class="layui-form-label">密碼</label>
 							<div class="layui-input-block">
 								<div class="size">
-									<input type="password" name="title" required
+									<input type="password" name="pwd" required id="in1"
 										lay-verify="required" value="123456" lder="请输入密码"
 										autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</div>
 						<div class="layui-form-item">
-							<label class="layui-form-label">角色</label>
+							<label class="layui-form-label">请确认密碼</label>
 							<div class="layui-input-block">
 								<div class="size">
-									<select name="city" lay-verify="required">
-										<option value=""></option>
-										<option value="0">北京</option>
-										<option value="1">上海</option>
-										<option value="2">广州</option>
-										<option value="3">深圳</option>
-										<option value="4">杭州</option>
-									</select>
+									<input type="password" name="title" required id="in2"
+										lay-verify="required" value="123456" lder="请再次输入密码"
+										autocomplete="off" class="layui-input">
 								</div>
 							</div>
 						</div>
+						<div class="layui-form-item layui-form">
+   							 <label class="layui-form-label">选择角色</label>
+    						<div class="layui-input-block size">
+	     					  <select  lay-verify="required" name="roleId">
+	        						<option value="0">請選擇</option>
+	        						<option value="2">普通管理员</option>
+	        						<option value="3">超级管理员</option>
+	      					  </select>
+	     
+   							 </div>
+  						</div>
 						<div class="layui-form-item">
 							<div class="layui-input-block">
-								<button class="layui-btn" lay-submit lay-filter="formDemo">确认添加</button>
-								<button type="reset" class="layui-btn layui-btn-primary">清空</button>
+								<button class="layui-btn" lay-submit lay-filter="formDemo" id="addAdmin">确认添加</button>
 							</div>
 						</div>
-					</form>
+					
+					</div>
 				</div>
 				<div class="weibo page">
 				<form class="layui-form" action="">
@@ -280,7 +291,12 @@
 		</div>
 
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="detail">查看</a>
+    <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="userWeibo">用户微博</a>
+    <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+</script>
+<!-- admin的操作栏 -->
+<script type="text/html" id="adminBar">
     <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
 </script>

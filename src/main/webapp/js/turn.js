@@ -1,5 +1,4 @@
 window.onload=function(){
-	alert(11)
 	layui.use([ 'table', 'element' ], function() {
 		var table = layui.table, laypage = layui.laypage;
 		var tableins="" 
@@ -11,8 +10,8 @@ window.onload=function(){
 		//,page:'true'
 		//}); turn.js
 
-		//第一个实例
-		tableins = table.render({
+		//user表格
+		tableins= table.render({
 			elem : '#demo',
 			height : 500,
 			url : '/sina/user/loadUser' //数据接口
@@ -35,17 +34,17 @@ window.onload=function(){
 			}, {
 				field : 'account',
 				title : '账号',
-				width : 200,
+				width : 80,
 				align : 'center'
 			}, {
 				field : 'pwd',
 				title : '密码',
-				width : 200,
+				width : 80,
 				align : 'center'
 			}, {
 				field : 'name',
 				title : '用户名',
-				width : 220,
+				width : 90,
 				align : 'center'
 			}, {
 				field : 'gender',
@@ -75,7 +74,7 @@ window.onload=function(){
 			}, {
 				field : 'statement',
 				title : '签名',
-				width : 200,
+				width : 80,
 				align : 'center'
 			}, {
 				field : 'dao',
@@ -89,15 +88,103 @@ window.onload=function(){
 			id : 'first',
 			request : {
 				pageName : 'page' //页码的参数名称，默认：page
-				,
-				limitName : 'limit' //每页数据量的参数名，默认：limit
+			   ,limitName : 'limit' //每页数据量的参数名，默认：limit
 			}
 
 		});
+		//user表格重載
+		var $userAdmin2=$("#userAdmin2")
+
+		$userAdmin2.click(function(){
+			$("#userAdmin").trigger("click")
+			tableins.reload({
+				elem : '#demo',
+				height : 500,
+				url : '/sina/user/loadUser' //数据接口
+				,
+				page : true //开启分页
+				,
+				cols : [ [ //表头
+				{
+					checkbox : true,
+					fixed : true,
+					align : 'center',
+					width : 40
+				}, {
+					field : 'id',
+					type : 'numbers',
+					title : 'ID',
+					width : 80,
+					sort : true,
+					align : 'center'
+				}, {
+					field : 'account',
+					title : '账号',
+					width : 80,
+					align : 'center'
+				}, {
+					field : 'pwd',
+					title : '密码',
+					width : 80,
+					align : 'center'
+				}, {
+					field : 'name',
+					title : '用户名',
+					width : 90,
+					align : 'center'
+				}, {
+					field : 'gender',
+					title : '性别',
+					width : 80,
+					align : 'center'
+				}, {
+					field : 'province',
+					title : '省份',
+					width : 80,
+					align : 'center'
+				}, {
+					field : 'city',
+					title : '城市',
+					width : 80,
+					align : 'center'
+				}, {
+					field : 'birthday',
+					title : '生日',
+					width : 80,
+					align : 'center'
+				}, {
+					field : 'pic',
+					title : '头像',
+					width : 100,
+					align : 'center'
+				}, {
+					field : 'statement',
+					title : '签名',
+					width : 80,
+					align : 'center'
+				}, {
+					field : 'dao',
+					title : '操作',
+					width : 260,
+					toolbar : "#barDemo",
+					align : 'center'
+				}
+
+				] ],
+				id : 'first',
+				request : {
+					pageName : 'page' //页码的参数名称，默认：page
+					,
+					limitName : 'limit' //每页数据量的参数名，默认：limit
+				}
+
+			});
+			
+			
+		})
 
 		var $search_in = $("#sea");
 		$search_in.keyup(function() {
-
 			var account = $(this).val();
 			tableins.reload({
 				elem : '#demo',
@@ -187,7 +274,8 @@ window.onload=function(){
 			})
 		})
 	//管理员列表
-	$("#empower").click(function(){		
+	$("#empower").click(function(){	
+		$("#userAdmin").trigger("click")
 		tableins.reload({
 			elem : '#demo',
 			height : 500,			
@@ -230,13 +318,10 @@ window.onload=function(){
 				field : 'dao',
 				title : '操作',
 				width : 260,
-				toolbar : "#barDemo",
+				toolbar : "#adminBar",
 				align : 'center'
 			}
 			] ]
-			,done:function(){
-				alert(222)
-			}
 			,page : {
 				curr : 1
 			}
@@ -261,16 +346,10 @@ window.onload=function(){
 			var data = obj.data; //获得当前行数据
 			var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 			var tr = obj.tr; //获得当前行 tr 的DOM对象
-			if (layEvent == "del") {
-				table.reload('first', {
-					url : 'one',
-					where : {
-						name : 'hello'
-					},
-					page : {
-						curr : 1
-					}
-				})
+			if (layEvent == "userWeibo") {
+				alert(tr.text())
+				
+			
 
 			}
 
@@ -278,11 +357,42 @@ window.onload=function(){
 
 	});
 	
-	
+	//微博表格
 
 	
 
-	
+	//管理员创建时的密码确认
+	var $in1=$("#in1");
+	var $in2=$("#in2");
+	$in2.blur(function(){
+		if($in1.val()!=$in2.val()){
+			alert("请确认密码");
+			return false;
+		}
+	})
+	$("#addAdmin").click(function(){
+		$("input[name='account']").val("")
+		$("input[name='pwd']").val("")
+		$("select[name='roleId']").val(0)
+		$("#adminName").val("")
+		$.ajax({
+			url:"/sina/adminLogin/addAdmin",
+			type:"post",
+			data:{"account":$("input[name='account']").val(),"pwd":$("input[name='pwd']").val(),"roleId":$("select[name='roleId']").val(),"adminName":$("#adminName").val()},
+			dataType:"json",
+			success:function(){
+				alert("success"+$("#adminName").val())
+					$("#empower").trigger("click")
+					$("#userAdmin").trigger("click")
+			},
+			error:function(){
+				alert("插入有誤")
+			}
+			
+			
+		})
+		
+	})
 	
 	
 	
@@ -300,7 +410,7 @@ window.onload=function(){
 		$(".page").css({"opacity":"0","z-index":"1",});
 		$(".weibo").css({"opacity": "1" , "z-index":"1000",});
 	})
-	$("#message").click(function() {
+	$("#createAdmin").click(function() {
 		$(".page").css({"opacity":"0","z-index":"1",});
 		$(".adminpage").css({"opacity": "1" , "z-index":"1000",});
 	})

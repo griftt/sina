@@ -76,7 +76,7 @@ public class UserDao extends HibernateDaoSupport implements UserDaoInterface {
 		return users;
 		
 	}
-	public int countAll(int pagesize){
+	public int countAllPage(int pagesize){
 		HibernateTemplate tem = super.getHibernateTemplate();
 		
 		List<Object> list=(List<Object>) tem.find("select count(*) from User ");
@@ -87,6 +87,15 @@ public class UserDao extends HibernateDaoSupport implements UserDaoInterface {
 		}else{
 			return num/pagesize+1;
 		}
+		
+		
+	}
+	public int countAll(){
+		HibernateTemplate tem = super.getHibernateTemplate();
+		
+		List<Object> list=(List<Object>) tem.find("select count(*) from User ");
+		int num= Integer.parseInt(list.get(0).toString());
+		return num;
 		
 		
 	}

@@ -10,10 +10,14 @@ public class User {
 	private String city;
 	private String gender;
 	private String mail;
-	private int friendId;
+	private Integer friendId;
+	
 	private String name;
 	private String statement;
 	
+	public void setFriendId(Integer friendId) {
+		this.friendId = friendId;
+	}
 	public String getStatement() {
 		return statement;
 	}
