@@ -105,8 +105,15 @@ window.onload=function(){
 		  var data = obj.data; //获得当前行数据
 		  var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
 		  var tr = obj.tr; //获得当前行 tr 的DOM对象
+		  
 		  if(layEvent == 'editUser'){ //查看
-		    alert(tr.text())
+		    alert(data.id)
+		  } 
+		  
+		  else if(layEvent == 'weiboUser'){ //查看
+			  reloadWeibo(data.id);
+		    $(".page").css({"opacity":"0","z-index":"1",});
+			$(".showWeibo").css({"opacity": "1" , "z-index":"1000",});
 		  } 
 		  else if(layEvent == 'delUser'){ //删除
 			    layer.confirm('真的删除行么', function(index){
@@ -354,6 +361,7 @@ window.onload=function(){
 	});
 	
 	//微博表格
+	
 
 	
 
@@ -389,7 +397,61 @@ window.onload=function(){
 		})
 		
 	})
+	function reloadWeibo( ){
+		//weibo表格
+		tableins.reload({
+				elem : '#weibotable',
+				height : 500,
+				url : '/sina/weibo/page' //数据接口
+				,
+				page : true //开启分页
+				,
+				cols : [ [ //表头
+				{
+					checkbox : true,
+					fixed : true,
+					align : 'center',
+					width : 40
+				}, {
+					field : 'id',
+					type : 'numbers',
+					title : 'ID',
+					width : 80,
+					sort : true,
+					align : 'center'
+				}, {
+					field : 'userId',
+					title : '用户id',
+					width : 80,
+					align : 'center'
+				}, {
+					field : 'content',
+					title : '内容',
+					width : 80,
+					align : 'center'
+				}, {
+					field : 'time',
+					title : '发布时间',
+					width : 90,
+					align : 'center'
+				}, {
+					field : 'pic',
+					title : '图片',
+					width : 80,
+					align : 'center'
+				}, {
+					toolbar : "#weiboBar",
+					title : '操作',
+					width : 80,
+					align : 'center'
+				}
 	
+				] ],
+				
+	
+			});
+			
+	}
 	
 	
 	
@@ -410,5 +472,9 @@ window.onload=function(){
 	$("#createAdmin").click(function() {
 		$(".page").css({"opacity":"0","z-index":"1",});
 		$(".adminpage").css({"opacity": "1" , "z-index":"1000",});
+	})
+	$("#userWeibo").click(function() {
+		$(".page").css({"opacity":"0","z-index":"1",});
+		$(".showWeibo").css({"opacity": "1" , "z-index":"1000",});
 	})
 }

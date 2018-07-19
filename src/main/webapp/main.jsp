@@ -33,7 +33,7 @@
 				<li class="layui-nav-item" ><a href="javascript:;">审核系统</a>
 					<dl class="layui-nav-child">
 						<dd>
-							<a href="">邮件管理</a>
+							<a >邮件管理</a>
 						</dd>
 						<dd>
 							<a  id="message">消息管理</a>
@@ -282,6 +282,10 @@
 				</form>
 
 			</div>
+				<div class="showWeibo page">
+					<table class="layui-table" lay-filter="weibo" id="weibotable">
+					</table>
+				</div>
 				<div class="layui-footer">
 					
 					<!-- 底部固定区域 -->
@@ -291,7 +295,7 @@
 		</div>
 
 <script type="text/html" id="barDemo">
- 
+ 	<a id="userWeibo" class="layui-btn layui-btn-mini" lay-event="weiboUser" >用户微博</a>
   <a class="layui-btn layui-btn-mini" lay-event="editUser">编辑</a>
   <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="delUser">删除</a>
 </script>
@@ -299,6 +303,11 @@
 <script type="text/html" id="adminBar">
     <a class="layui-btn layui-btn-mini" lay-event="editAdmin" >编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="delAdmin">删除</a>
+</script>
+<!-- weibo的操作栏 -->
+<script type="text/html" id="weiBar">
+    <a class="layui-btn layui-btn-mini" lay-event="editWeibo >编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="delWeibo">删除</a>
 </script>
 </body>
 

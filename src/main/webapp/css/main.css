@@ -51,7 +51,18 @@
 	top: 1px;
 	
 }
-
+.showWeibo{
+	
+	width:100%;
+	position: absolute;
+	left: 1px;
+	top: 1px;
+	background-color: red;
+	
+}
+.showWeibo{
+	width:80%;
+}
 .userdetail {
 
 	position: absolute;
