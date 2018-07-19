@@ -16,72 +16,71 @@ import org.springframework.stereotype.Repository;
 
 import com.dao.AdminDaoInterface;
 import com.entity.Admin;
+
 @Repository
 public class AdminDao extends HibernateDaoSupport implements AdminDaoInterface {
 
 	@Resource
-	public void setSf(SessionFactory sf){
+	public void setSf(SessionFactory sf) {
 		super.setSessionFactory(sf);
-		
+
 	}
-	
+
 	@SuppressWarnings("deprecation")
 	@Override
 	public Admin checkAdmin(final String account, final String pwd) {
 		// TODO Auto-generated method stub
-		HibernateTemplate tem=super.getHibernateTemplate();
-		
-		List<Admin> admin= (List<Admin>) tem.find("from Admin where account ="+account+ "and pwd="+pwd); 
-				if(admin.size()!=0){
-					return admin.get(0); 
-				}else{
-					return null;
-				}
-				
-			
+		HibernateTemplate tem = super.getHibernateTemplate();
+
+		List<Admin> admin = (List<Admin>) tem.find("from Admin where account =" + account + "and pwd=" + pwd);
+		if (admin.size() != 0) {
+			return admin.get(0);
+		} else {
+			return null;
+		}
+
 	}
+
 	@SuppressWarnings({ "deprecation", "unchecked" })
-	public List<Admin> adminPage(final int page,final int pagesize){
-		 HibernateTemplate tem = super.getHibernateTemplate();
-		List<Admin> admins=(List<Admin>) tem.executeFind(new HibernateCallback() {
+	public List<Admin> adminPage(final int page, final int pagesize) {
+		HibernateTemplate tem = super.getHibernateTemplate();
+		List<Admin> admins = (List<Admin>) tem.executeFind(new HibernateCallback() {
 
 			@Override
 			public Object doInHibernate(Session session) throws HibernateException, SQLException {
 				// TODO Auto-generated method stub
-				Query query =session.createQuery("from Admin");
-				query.setFirstResult((page-1)*pagesize);
+				Query query = session.createQuery("from Admin");
+				query.setFirstResult((page - 1) * pagesize);
 				query.setMaxResults(pagesize);
-				
-				return  query.list();
+
+				return query.list();
 			}
-			
+
 		});
-		
-		
+
 		return admins;
-		
+
 	}
-	public int countAll(int pagesize){
+
+	public int countAll(int pagesize) {
 		HibernateTemplate tem = super.getHibernateTemplate();
-		
-		List<Object> list=(List<Object>) tem.find("select count(*) from Admin");
-		int num= Integer.parseInt(list.get(0).toString());
-		if(num%pagesize==0){
-			return num/pagesize;
-			
-		}else{
-			return num/pagesize+1;
+
+		List<Object> list = (List<Object>) tem.find("select count(*) from Admin");
+		int num = Integer.parseInt(list.get(0).toString());
+		if (num % pagesize == 0) {
+			return num / pagesize;
+
+		} else {
+			return num / pagesize + 1;
 		}
-		
-		
+
 	}
 
 	@Override
 	public void createAdmin(Admin admin) {
 		// TODO Auto-generated method stub
-		HibernateTemplate tem=super.getHibernateTemplate();
+		HibernateTemplate tem = super.getHibernateTemplate();
 		tem.save(admin);
 	}
-	
 
 }

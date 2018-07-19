@@ -1,7 +1,7 @@
 window.onload=function(){
 	layui.use([ 'table', 'element' ], function() {
 		var table = layui.table, laypage = layui.laypage;
-		var tableins="" 
+		
 		//转换静态表格
 		//table.init('demo', {
 		//height: 400 //设置高度
@@ -92,9 +92,32 @@ window.onload=function(){
 			}
 
 		});
+		
+
+		table.on('checkbox(test)', function(obj) {
+			console.log(obj.checked); //当前是否选中状态
+			console.log(obj.data); //选中行的相关数据
+			console.log(obj.type);
+			alert(obj.data.id)//如果触发的是全选，则为：all，如果触发的是单选，则为：one
+		});
+	
+	table.on('tool(test)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
+		  var data = obj.data; //获得当前行数据
+		  var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
+		  var tr = obj.tr; //获得当前行 tr 的DOM对象
+		  if(layEvent == 'editUser'){ //查看
+		    alert(tr.text())
+		  } 
+		  else if(layEvent == 'delUser'){ //删除
+			    layer.confirm('真的删除行么', function(index){
+			      obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+			      layer.close(index);
+			      //向服务端发送删除指令
+			    });
+			  }
+	})
 		//user表格重載
 		var $userAdmin2=$("#userAdmin2")
-
 		$userAdmin2.click(function(){
 			$("#userAdmin").trigger("click")
 			tableins.reload({
@@ -179,8 +202,6 @@ window.onload=function(){
 				}
 
 			});
-			
-			
 		})
 
 		var $search_in = $("#sea");
@@ -191,7 +212,6 @@ window.onload=function(){
 				height : 500,
 				where : {
 					account : account
-
 				},
 				url : '/sina/user/searchUser' //数据接口
 				,
@@ -265,9 +285,7 @@ window.onload=function(){
 				}
 
 				] ]
-
-				,
-				page : {
+				,page : {
 					curr : 1
 				}
 
@@ -332,28 +350,6 @@ window.onload=function(){
 		
 		
 		})
-	
-
-
-		table.on('checkbox(test)', function(obj) {
-			console.log(obj.checked); //当前是否选中状态
-			console.log(obj.data); //选中行的相关数据
-			console.log(obj.type);
-			alert(obj.data.id)//如果触发的是全选，则为：all，如果触发的是单选，则为：one
-		});
-
-		table.on('tool(test)', function(obj) { //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
-			var data = obj.data; //获得当前行数据
-			var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
-			var tr = obj.tr; //获得当前行 tr 的DOM对象
-			if (layEvent == "userWeibo") {
-				alert(tr.text())
-				
-			
-
-			}
-
-		});
 
 	});
 	
@@ -393,6 +389,7 @@ window.onload=function(){
 		})
 		
 	})
+	
 	
 	
 	

@@ -291,20 +291,17 @@
 		</div>
 
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-primary layui-btn-mini" lay-event="userWeibo">用户微博</a>
-    <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+ 
+  <a class="layui-btn layui-btn-mini" lay-event="editUser">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="delUser">删除</a>
 </script>
 <!-- admin的操作栏 -->
 <script type="text/html" id="adminBar">
-    <a class="layui-btn layui-btn-mini" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-mini" lay-event="editAdmin" >编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="delAdmin">删除</a>
 </script>
 </body>
-<script>
-	
 
-</script>
 
 </html>
 
