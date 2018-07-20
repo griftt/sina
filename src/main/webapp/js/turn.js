@@ -109,7 +109,6 @@ window.onload=function(){
 		  if(layEvent == 'editUser'){ //查看
 		    alert(data.id)
 		  } 
-		  
 		  else if(layEvent == 'weiboUser'){ //查看
 			  reloadWeibo(data.id);
 		    $(".page").css({"opacity":"0","z-index":"1",});
@@ -397,14 +396,17 @@ window.onload=function(){
 		})
 		
 	})
-	function reloadWeibo( ){
+	function reloadWeibo(obj){
 		//weibo表格
 		tableins.reload({
 				elem : '#weibotable',
 				height : 500,
-				url : '/sina/weibo/page' //数据接口
+				url : '/sina/weibo/weiboPage' //数据接口
 				,
 				page : true //开启分页
+				,where:{
+					"id":obj
+				}
 				,
 				cols : [ [ //表头
 				{
@@ -442,7 +444,7 @@ window.onload=function(){
 				}, {
 					toolbar : "#weiboBar",
 					title : '操作',
-					width : 80,
+					width : 200,
 					align : 'center'
 				}
 	

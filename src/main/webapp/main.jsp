@@ -305,8 +305,8 @@
     <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="delAdmin">删除</a>
 </script>
 <!-- weibo的操作栏 -->
-<script type="text/html" id="weiBar">
-    <a class="layui-btn layui-btn-mini" lay-event="editWeibo >编辑</a>
+<script type="text/html" id="weiboBar">
+    <a class="layui-btn layui-btn-mini" lay-event="editWeibo" >编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-mini" lay-event="delWeibo">删除</a>
 </script>
 </body>

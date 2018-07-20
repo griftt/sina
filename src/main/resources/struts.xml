@@ -55,6 +55,14 @@
     	</action>
     	
     </package>
+    <package name="weibo" namespace="/weibo" extends="json-default">
+    	<action name="weiboPage" class="weiboAction" method="findWeiboPage">
+    		<result name="success" type="json">
+    			<param name="root">result</param>
+    		</result>
+    	</action>
+    
+    </package>
     
 
 </struts>
